@@ -4,7 +4,7 @@ import './App.css';
 import Users from './Users';
 import CreateUser from './CreateUser';
 import UpdateUser from './UpdateUser';
-import PieChartPage from './PieChartPage'; // Import the new PieChartPage component
+import PieChartPage from './PieChartPage'; 
 import Login from './Login';
 import Signup from './Signup';
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Users />} />
           <Route path="/create" element={<CreateUser />} />
           <Route path="/update/:id" element={<UpdateUser />} />
-          <Route path="/chart" element={<PieChartPage />} /> {/* Add the PieChartPage route */}
+          <Route path="/chart" element={<PieChartPage />} /> 
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,20 +1,26 @@
 const mongoose = require('mongoose')
-// Define the schema for User
+
 const UserSchema = new mongoose.Schema({
     category: {
       type: String,
-      required: true, // Ensures the category is provided
+      required: true, 
     },
     amount: {
       type: Number,
-      required: true, // Ensures the amount is provided
+      required: true, 
     },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: {
+       type: Date, 
+       default: Date.now
+       },
     
-  updatedAt: { type: String, default: '-' },
+  updatedAt: { 
+    type: String,
+     default: '-'
+     },
     comments: {
       type: String,
-      default: '', // Allows empty comments, if not provided
+      default: '', 
     },
   });
   

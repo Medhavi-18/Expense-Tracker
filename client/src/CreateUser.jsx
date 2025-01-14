@@ -18,7 +18,7 @@ function CreateUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const currentTime = new Date().toISOString(); // Automatically set the current timestamp for createdAt
+    const currentTime = new Date().toISOString(); // Automatically set Create time
 
     // Send data to the server
     axios
@@ -31,7 +31,7 @@ function CreateUser() {
       })
       .then((result) => {
         console.log(result);
-        navigate('/'); // Redirect to the main page after submission
+        navigate('/'); 
       })
       .catch((err) => {
         console.error(err);

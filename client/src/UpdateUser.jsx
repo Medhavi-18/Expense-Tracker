@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function UpdateUser() {
-  const { id } = useParams(); // Get user ID from URL
+  const { id } = useParams(); 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -29,6 +29,7 @@ function UpdateUser() {
       .catch((err) => console.error('Error fetching data:', err));
   }, [id]); // Dependency array ensures this effect runs when `id` changes
 
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,6 +39,7 @@ function UpdateUser() {
     }));
   };
 
+  
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();

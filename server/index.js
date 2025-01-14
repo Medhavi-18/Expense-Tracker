@@ -14,21 +14,23 @@ mongoose.connect("mongodb://127.0.0.1:27017/expansetracker");
 
 
 // JWT Secret
-const JWT_SECRET = "Medhavi"; // Store this securely in an environment variable
+const JWT_SECRET = "Medhavi"; 
 
 
+//------------------------------------------------------------------------------
 
+//1))SIGNUP
 app.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
   
     try {
-      // Check if the email already exists
+      // Check email already exists
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res.status(400).json({ error: "Email is already in use." });
       }
   
-      // Hash the password before saving it
+      // Hash the password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
   
@@ -51,8 +53,9 @@ app.post("/signup", async (req, res) => {
 
 
 
+//-----------------------------------------------------------------------------
 
-//Login
+//2))LOGIN
 app.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
@@ -64,7 +67,7 @@ app.post("/login", async (req, res) => {
     }
 
     try {
-        // Case-insensitive query for username
+        
         const user = await User.findOne({
             username: new RegExp('^' + username.trim() + '$', 'i')
         });
@@ -98,34 +101,38 @@ app.post("/login", async (req, res) => {
 
 
 
-
-
-
-
 //-----------------------------------------------------------------------
-// Create new user
+//3))Create new user
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-// Get all users (for the frontend)
+//------------------------------------------------------------------------
+
+//4))Get all users (for the frontend)
 app.get('/', (req, res) => {
     UserModel.find({})
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
-// Get user by ID
+
+//---------------------------------------------------------------------------
+
+//5))Get user by ID
 app.get('/getUser/:id', (req, res) => {
     const id = req.params.id;
-    UserModel.findById(id) // Corrected here
-        .then(user => res.json(user)) // Return a single user
+    UserModel.findById(id) 
+        .then(user => res.json(user)) 
         .catch(err => res.json(err));
 });
 
-// Update user route (if needed)
+
+//----------------------------------------------------------------------------
+
+// 6))Update user route (if needed)
 app.put('/updateUser/:id', (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndUpdate(id, req.body, { new: true })
@@ -133,9 +140,9 @@ app.put('/updateUser/:id', (req, res) => {
         .catch(err => res.json(err));
 });
 
+//-----------------------------------------------------------------------------
 
-
-//delete
+// 7))Delete
 app.delete('/deleteUser/:id', (req,res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({_id:id})
@@ -143,8 +150,7 @@ app.delete('/deleteUser/:id', (req,res) => {
     .catch(err => res.json(err))
 })
 
-
-
+//------------------------------------------------------------------------------
 
 app.listen(3001, () => {
     console.log("Server is Running");

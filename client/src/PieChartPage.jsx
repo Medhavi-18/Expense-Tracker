@@ -15,12 +15,13 @@ function PieChartPage() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001') // Replace with your backend endpoint
+      .get('http://localhost:3001') 
       .then((result) => {
         calculateCategoryData(result.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
 
   // Calculate total amount per category
   const calculateCategoryData = (data) => {
@@ -33,7 +34,7 @@ function PieChartPage() {
       }
     });
 
-    // Prepare data for the chart
+    // Prepare chart from data
     setChartData({
       labels: Object.keys(categoryTotals),
       datasets: [
@@ -70,7 +71,7 @@ function PieChartPage() {
             <Pie
               data={chartData}
               options={{
-                maintainAspectRatio: false, // Ensures the chart fits properly within the box
+                maintainAspectRatio: false, 
               }}
             />
           </div>

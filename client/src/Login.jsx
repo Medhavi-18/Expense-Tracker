@@ -95,7 +95,7 @@ function Login() {
             value={credentials.password}
             onChange={handleInputChange}
             required
-            minLength={6} // Optional: Ensure a minimum password length
+            minLength={6} // minimum password length
             aria-label="Password"
           />
         </div>
